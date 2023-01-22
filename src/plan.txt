@@ -1,0 +1,23 @@
+Home page
+- view the reviews of all of the people that your following
+
+Restaurant Search
+- search for a Restaurant
+    - each restaurant page will have all of its menu items with descriptions
+    - menu items can be clicked to start a new review 
+
+Profile
+- all of your reivews
+
+Restaurant:
+- name
+- uuid
+- address
+
+Item:
+- uuid
+- parentRestaurant
+- name
+- description
+
+curl -v -X "PUT" -H "Content-Type: application/json" -d "{\"uuid\": \"2\", \"parentRestaurant\": \"1\", \"name\": \"Veggie Breakfast Sandwich\", \"descript\": \"Buttermilk biscuit, Beking’s poached egg, red wine braised peppers, French brie\"}" https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/items
