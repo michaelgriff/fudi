@@ -3,10 +3,10 @@ import axios from "axios";
 import Restaurant from "./Restaurant";
 
 const Restaurants = ({ uuid }) => {
-  console.log("this is the uuid", uuid);
   const [restList, setRestList] = useState([]);
   const [selected, setSelected] = useState("");
   const [showItems, setShowItems] = useState(false);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetch = async () => {
@@ -14,7 +14,6 @@ const Restaurants = ({ uuid }) => {
         method: "get",
         url: "https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/restaurants",
       });
-      console.log(response);
       return response;
     };
 
@@ -22,6 +21,12 @@ const Restaurants = ({ uuid }) => {
       setRestList(response.data.Items);
     });
   }, []);
+
+  const filteredItems = restList
+    ? restList.filter((item) =>
+        item.name.toLowerCase().includes(query.toLowerCase())
+      )
+    : null;
 
   const handleItemClick = (uuid) => {
     setSelected(uuid);
@@ -37,9 +42,19 @@ const Restaurants = ({ uuid }) => {
           setShowItems={setShowItems}
         />
       ) : (
-        restList.map((rest) => {
-          return <p onClick={() => handleItemClick(rest.uuid)}>{rest.name}</p>;
-        })
+        <div>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search..."
+          />
+          <ul>
+            {filteredItems.map((item) => (
+              <li onClick={() => handleItemClick(item.uuid)}>{item.name}</li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

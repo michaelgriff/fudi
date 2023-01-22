@@ -21,9 +21,6 @@ function App() {
                 <Link to="/login">Login</Link>
               </li>
               <li>
-                <Link to="/users">Users</Link>
-              </li>
-              <li>
                 <Link to="/restaurants">Restaurants</Link>
               </li>
             </ul>
