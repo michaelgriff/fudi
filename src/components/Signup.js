@@ -10,12 +10,11 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const submit = async () => {
-    console.log(uuidv4());
     const body = {
       username,
       password,
       uuid: uuidv4(),
-      following: "",
+      following: "[]",
     };
 
     const response = await axios({

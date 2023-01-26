@@ -5,9 +5,11 @@ import Login from "./components/Login";
 import { useState } from "react";
 import Signup from "./components/Signup";
 import Restaurants from "./components/Restaurants";
+import Profile from "./components/Profile";
+import Users from "./components/Users";
 
 function App() {
-  const [uuid, setUuid] = useState("");
+  const [user, setUser] = useState("");
   return (
     <div className="App">
       <Router>
@@ -23,16 +25,27 @@ function App() {
               <li>
                 <Link to="/restaurants">Restaurants</Link>
               </li>
+              <li>
+                <Link to="/users">Users</Link>
+              </li>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
             </ul>
           </nav>
 
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Routes>
-            <Route path="/" element={<Home name={uuid} />} />
-            <Route path="/login" element={<Login setUuid={setUuid} />} />
+            <Route path="/" element={<Home user={user} />} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/restaurants" element={<Restaurants uuid={uuid} />} />
+            <Route
+              path="/restaurants"
+              element={<Restaurants uuid={user.uuid} />}
+            />
+            <Route path="/users" element={<Users user={user} />} />
+            <Route path="/profile" element={<Profile user={user} />} />
           </Routes>
         </div>
       </Router>

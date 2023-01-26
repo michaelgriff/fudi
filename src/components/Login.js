@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ setUuid }) => {
+const Login = ({ setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,12 +11,11 @@ const Login = ({ setUuid }) => {
       method: "get",
       url: "https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/users",
     });
-    console.log(response);
 
     response.data.Items.forEach((user) => {
       if (user.username === username) {
         if (user.password === password) {
-          setUuid(user.uuid);
+          setUser(user);
           navigate("/");
         }
       }

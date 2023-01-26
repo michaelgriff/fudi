@@ -24,7 +24,6 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
     fetch().then((itemList) => {
       setItems(itemList);
     });
-    console.log(items);
   }, []);
 
   const handleReviewClick = (item) => {

@@ -20,4 +20,17 @@ Item:
 - name
 - description
 
-curl -v -X "PUT" -H "Content-Type: application/json" -d "{\"uuid\": \"2\", \"parentRestaurant\": \"1\", \"name\": \"Veggie Breakfast Sandwich\", \"descript\": \"Buttermilk biscuit, Beking’s poached egg, red wine braised peppers, French brie\"}" https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/items
+curl -v -X "PUT" -H "Content-Type: application/json" -d "{\"uuid\": \"11\", \"parentRestaurant\": \"1\", \"name\": \"Mediterranean Mushroom\", \"descript\": \"‘Fungi Connectio' sauteed mushrooms w garlic & onions, pumpkin seed pesto aioli, crumbled feta, Burt’s greens\"}" https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/items
+
+uuid: requestJSON.uuid,
+item: requestJSON.item,
+user: requestJSON.user,
+rating: requestJSON.rating,
+reasoning: requestJSON.reasoning
+
+NOTE: 
+Will have to add to the lambda and api gateway the functionality to 
+get reviews based on the user that made them, that way when one user logs in, 
+you will be able to scan all the reviews of people they follow. 
+
+curl https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/items/1
