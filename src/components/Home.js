@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({ user }) => {
   const [reviews, setReviews] = useState([]);
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getItemName = async (id) => {
       const response = await axios({
@@ -31,17 +35,18 @@ const Home = ({ user }) => {
         url: `https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/users/${id}`,
       });
 
-      return response.data.Item.username;
+      return response.data.Item;
     };
 
     const updateReview = async (review) => {
       const { item_name, restaurant_id } = await getItemName(review.item);
       const restaurant_name = await getRestaurantName(restaurant_id);
-      const username = await getUser(review.user);
+      const user = await getUser(review.user);
 
       review.item_name = item_name;
+      review.restaurant_id = restaurant_id;
       review.restaurant_name = restaurant_name;
-      review.username = username;
+      review.user = user;
       return review;
     };
 
@@ -66,15 +71,27 @@ const Home = ({ user }) => {
     });
   }, []);
 
+  const toRestaurant = (restaurant_id) => {
+    navigate("/restaurants", { state: { restaurant_id } });
+  };
+
+  const toProfile = (user) => {
+    navigate("/profile", { state: { user } });
+  };
+
   return (
     <div>
       {reviews
         ? reviews.map((review) => {
             return (
               <div>
-                <p>{review.username}</p>
+                <p onClick={() => toProfile(review.user)}>
+                  {review.user.username}
+                </p>
                 <p>{review.item_name}</p>
-                <p>{review.restaurant_name}</p>
+                <p onClick={() => toRestaurant(review.restaurant_id)}>
+                  {review.restaurant_name}
+                </p>
                 <p>{review.rating}</p>
                 <p>{review.reasoning}</p>
               </div>

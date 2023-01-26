@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Restaurant from "./Restaurant";
+import { useLocation } from "react-router-dom";
 
 const Restaurants = ({ uuid }) => {
   const [restList, setRestList] = useState([]);
   const [selected, setSelected] = useState("");
   const [showItems, setShowItems] = useState(false);
   const [query, setQuery] = useState("");
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      console.log(location.state);
+      setSelected(location.state.restaurant_id);
+      setShowItems(true);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const fetch = async () => {

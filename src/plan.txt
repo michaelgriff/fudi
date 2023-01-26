@@ -34,3 +34,7 @@ get reviews based on the user that made them, that way when one user logs in,
 you will be able to scan all the reviews of people they follow. 
 
 curl https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/items/1
+
+NOTE: 
+Probably makes sense to have page for each review showing the avergae score 
+of all reviews and a list of all the reviews for it.

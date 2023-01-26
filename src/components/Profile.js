@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const Profile = ({ user }) => {
   const [reviews, setReviews] = useState([]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      setSelected(location.state.restaurant_id);
+      setShowItems(true);
+    }
+  }, [location.state]);
+
   useEffect(() => {
     const fetch = async () => {
       const reviews = await axios({
@@ -32,7 +43,7 @@ const Profile = ({ user }) => {
     fetch().then((reviewList) => {
       setReviews(reviewList);
     });
-  }, []);
+  }, [user]);
   return (
     <div>
       <p>{user.username}</p>
