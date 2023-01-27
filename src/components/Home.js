@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import updateReview from "../helpers/updateReview";
 import { useNavigate } from "react-router-dom";
 
 const Home = ({ user }) => {
@@ -8,48 +9,6 @@ const Home = ({ user }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getItemName = async (id) => {
-      const response = await axios({
-        method: "get",
-        url: `https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/items/${id}`,
-      });
-
-      return {
-        item_name: response.data.Item.name,
-        restaurant_id: response.data.Item.parentRestaurant,
-      };
-    };
-
-    const getRestaurantName = async (id) => {
-      const response = await axios({
-        method: "get",
-        url: `https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/restaurants/${id}`,
-      });
-
-      return response.data.Item.name;
-    };
-
-    const getUser = async (id) => {
-      const response = await axios({
-        method: "get",
-        url: `https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/users/${id}`,
-      });
-
-      return response.data.Item;
-    };
-
-    const updateReview = async (review) => {
-      const { item_name, restaurant_id } = await getItemName(review.item);
-      const restaurant_name = await getRestaurantName(restaurant_id);
-      const user = await getUser(review.user);
-
-      review.item_name = item_name;
-      review.restaurant_id = restaurant_id;
-      review.restaurant_name = restaurant_name;
-      review.user = user;
-      return review;
-    };
-
     const fetch = async () => {
       const allReviews = await axios({
         method: "get",
@@ -63,8 +22,7 @@ const Home = ({ user }) => {
       const asyncReviewList = await Promise.all(
         reviewList.map((review) => updateReview(review))
       );
-      console.log(asyncReviewList);
-      return reviewList;
+      return asyncReviewList;
     };
     fetch().then((reviewList) => {
       setReviews(reviewList);
@@ -76,7 +34,7 @@ const Home = ({ user }) => {
   };
 
   const toProfile = (user) => {
-    navigate("/profile", { state: { user } });
+    navigate(`/profile/${user.username}`, { state: { user } });
   };
 
   return (

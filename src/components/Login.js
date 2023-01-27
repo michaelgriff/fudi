@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {
+  LoginBackground,
+  CenteredLogin,
+  LoginContainer,
+  LoginInput,
+  LoginButton,
+  Logo,
+  SignupContainer,
+} from "../styles/LoginElements";
+import logo from "../images/fudi-logo.png";
 
 const Login = ({ setUser }) => {
   const [username, setUsername] = useState("");
@@ -35,17 +45,32 @@ const Login = ({ setUser }) => {
   const handleClick = () => {};
 
   return (
-    <div>
-      <label>Username: </label>
-      <input type="text" value={username || ""} onChange={onChangeUsername} />
-      <br />
-      <label>Password: </label>
-      <input type="text" value={password || ""} onChange={onChangePassword} />
-      <br />
-      <button onClick={submit}>Submit</button>
-      <br />
-      <button onClick={() => navigate("/signup")}>Sign Up</button>
-    </div>
+    <LoginBackground>
+      <CenteredLogin>
+        <LoginContainer>
+          <Logo src={logo} alt={"logo"} />
+          <LoginInput
+            type="text"
+            value={username || ""}
+            onChange={onChangeUsername}
+            placeholder="Username"
+          />
+          <LoginInput
+            type="text"
+            value={password || ""}
+            onChange={onChangePassword}
+            placeholder="Password"
+          />
+          <LoginButton onClick={submit}>Log in</LoginButton>
+        </LoginContainer>
+        <SignupContainer>
+          <p>Don't have an account? Sign up</p>
+        </SignupContainer>
+      </CenteredLogin>
+      {/* <button onClick={submit}>Submit</button> */}
+      {/* <br /> */}
+      {/* <button onClick={() => navigate("/signup")}>Sign Up</button> */}
+    </LoginBackground>
   );
 };
 

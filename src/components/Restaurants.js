@@ -13,7 +13,6 @@ const Restaurants = ({ uuid }) => {
 
   useEffect(() => {
     if (location.state) {
-      console.log(location.state);
       setSelected(location.state.restaurant_id);
       setShowItems(true);
     }
