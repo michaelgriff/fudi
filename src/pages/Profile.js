@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import updateReview from "../helpers/updateReview";
+import FollowButton from "../components/FollowButton";
 
 const Profile = ({ user }) => {
   const [reviews, setReviews] = useState([]);
@@ -44,11 +45,13 @@ const Profile = ({ user }) => {
 
   return (
     <div>
-      {user.uuid === currentUser.uuid ? (
-        <button>Settings</button>
-      ) : (
-        <button>Follow</button>
-      )}
+      {currentUser.uuid ? (
+        user.uuid === currentUser.uuid ? (
+          <button>Settings</button>
+        ) : (
+          <FollowButton user={user} selected={currentUser} />
+        )
+      ) : null}
       <p>{currentUser.username}</p>
       {reviews.map((review) => {
         return (

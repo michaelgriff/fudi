@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Restaurant from "./Restaurant";
+import Restaurant from "../components/Restaurant";
 import { useLocation } from "react-router-dom";
 
 const Restaurants = ({ uuid }) => {

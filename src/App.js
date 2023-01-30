@@ -6,13 +6,13 @@ import {
   Link,
   Navigate,
 } from "react-router-dom";
-import Home from "./components/Home";
-import Login from "./components/Login";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 import { useState } from "react";
-import Signup from "./components/Signup";
-import Restaurants from "./components/Restaurants";
-import Profile from "./components/Profile";
-import Users from "./components/Users";
+import Signup from "./pages/Signup";
+import Restaurants from "./pages/Restaurants";
+import Profile from "./pages/Profile";
+import Users from "./pages/Users";
 
 function App() {
   const [user, setUser] = useState("");

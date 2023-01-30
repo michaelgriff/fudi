@@ -41,3 +41,10 @@ NOTE (Jan 26th):
 Need to find a way to display the profile thing better so that you can navigate 
 to other peoples profiles without changing the base user state variable. Investigate 
 the secondary path thing (ie: fudi.com/michaelgriff)
+
+To do list: 
+- enter on login button
+- handling incorrect username/password
+- signing up with same username
+- editting existing reviews
+- loading while requests are made

@@ -9,6 +9,7 @@ import {
   LoginButton,
   Logo,
   SignupContainer,
+  SignupText,
 } from "../styles/LoginElements";
 import logo from "../images/fudi-logo.png";
 
@@ -64,12 +65,12 @@ const Login = ({ setUser }) => {
           <LoginButton onClick={submit}>Log in</LoginButton>
         </LoginContainer>
         <SignupContainer>
-          <p>Don't have an account? Sign up</p>
+          <p>
+            Don't have an account?{" "}
+            <SignupText onClick={() => navigate("/signup")}>Sign up</SignupText>
+          </p>
         </SignupContainer>
       </CenteredLogin>
-      {/* <button onClick={submit}>Submit</button> */}
-      {/* <br /> */}
-      {/* <button onClick={() => navigate("/signup")}>Sign Up</button> */}
     </LoginBackground>
   );
 };

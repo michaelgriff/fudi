@@ -34,7 +34,9 @@ const Home = ({ user }) => {
   };
 
   const toProfile = (user) => {
-    navigate(`/profile/${user.username}`, { state: { user } });
+    navigate(`/profile/${user.username}`, {
+      state: { user },
+    });
   };
 
   return (
