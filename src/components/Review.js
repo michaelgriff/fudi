@@ -34,7 +34,6 @@ const Review = ({ uuid, reviewing, setShowReview }) => {
   };
   return (
     <div>
-      <p>{reviewing.name}</p>
       <p>Score:</p>
       <input type="text" value={value} onChange={handleChange} />
       <p>Description:</p>

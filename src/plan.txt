@@ -48,3 +48,4 @@ To do list:
 - signing up with same username
 - editting existing reviews
 - loading while requests are made
+- tab to view all reviews for a given item

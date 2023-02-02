@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Review from "./Review";
+import Item from "./Item";
 
 const Restaurant = ({ uuid, selected, setShowItems }) => {
   const [items, setItems] = useState([]);
   const [showReview, setShowReview] = useState(false);
+  const [showItem, setShowItem] = useState(false);
+  const [item, setItem] = useState({});
   const [reviewing, setReviewing] = useState({});
   useEffect(() => {
     const fetch = async () => {
@@ -31,15 +34,41 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
     setReviewing(item);
   };
 
+  const handleItemClick = (item) => {
+    setShowItem(true);
+    setItem(item);
+  };
+
   return (
     <div>
-      {!showReview ? (
+      {!showItem ? (
         <button onClick={() => setShowItems(false)}>Back</button>
+      ) : !showReview ? (
+        <button onClick={() => setShowItem(false)}>Back</button>
       ) : (
         <button onClick={() => setShowReview(false)}>Back</button>
       )}
 
-      {showReview ? (
+      {showItem ? (
+        <Item
+          uuid={uuid}
+          item={item}
+          setShowItem={setShowItem}
+          showReview={showReview}
+          setShowReview={setShowReview}
+        />
+      ) : items ? (
+        items.map((item) => {
+          return (
+            <div>
+              <p onClick={() => handleItemClick(item)}>{item.name}</p>
+              <p>{item.description}</p>
+            </div>
+          );
+        })
+      ) : null}
+
+      {/* {showReview ? (
         <Review
           uuid={uuid}
           reviewing={reviewing}
@@ -55,7 +84,7 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
             </div>
           );
         })
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
