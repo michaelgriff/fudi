@@ -56,24 +56,6 @@ const Home = ({ user }) => {
 
   return (
     <div style={{ height: "100%" }}>
-      {/* {reviews
-        ? reviews.map((review) => {
-            return (
-              <div>
-                <p onClick={() => toProfile(review.user)}>
-                  {review.user.username}
-                </p>
-                <p>{review.item_name}</p>
-                <p onClick={() => toRestaurant(review.restaurant_id)}>
-                  {review.restaurant_name}
-                </p>
-                <p>{review.rating}</p>
-                <p>{review.reasoning}</p>
-              </div>
-            );
-          })
-        : null} */}
-
       <HomeContainer>
         {reviews
           ? reviews.map((review) => {

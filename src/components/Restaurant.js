@@ -7,6 +7,8 @@ import {
   MenuItemDescription,
   TopContainer,
   TitleContainer,
+  HeaderContainer,
+  ArrowContainer,
 } from "../styles/RestaurantElements";
 import {
   RestaurantContainer,
@@ -16,8 +18,9 @@ import {
   MenuContainer,
 } from "../styles/RestaurantsElements";
 import { BiFoodMenu } from "react-icons/bi";
+import { BsFillArrowLeftSquareFill } from "react-icons/bs";
 
-const Restaurant = ({ uuid, selected, setShowItems }) => {
+const Restaurant = ({ user, selected, setShowItems }) => {
   const [items, setItems] = useState([]);
   const [showReview, setShowReview] = useState(false);
   const [showItem, setShowItem] = useState(false);
@@ -50,17 +53,9 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
 
   return (
     <div>
-      {!showItem ? (
-        <button onClick={() => setShowItems(false)}>Back</button>
-      ) : !showReview ? (
-        <button onClick={() => setShowItem(false)}>Back</button>
-      ) : (
-        <button onClick={() => setShowReview(false)}>Back</button>
-      )}
-
       {showItem ? (
         <Item
-          uuid={uuid}
+          user={user}
           item={item}
           setShowItem={setShowItem}
           showReview={showReview}
@@ -68,15 +63,20 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
         />
       ) : items ? (
         <RestaurantContainer>
-          <TitleContainer>
-            <NameContainer>
-              <MenuContainer>
-                <BiFoodMenu />
-              </MenuContainer>
-              <ResultName>{selected.name}</ResultName>
-            </NameContainer>
-            <ResultAddress>{selected.address}</ResultAddress>
-          </TitleContainer>
+          <HeaderContainer>
+            <ArrowContainer onClick={() => setShowItems(false)}>
+              <BsFillArrowLeftSquareFill />
+            </ArrowContainer>
+            <TitleContainer>
+              <NameContainer>
+                <MenuContainer>
+                  <BiFoodMenu />
+                </MenuContainer>
+                <ResultName>{selected.name}</ResultName>
+              </NameContainer>
+              <ResultAddress>{selected.address}</ResultAddress>
+            </TitleContainer>
+          </HeaderContainer>
           {items.map((item) => {
             return (
               <MenuItemContainer onClick={() => handleItemClick(item)}>

@@ -57,7 +57,7 @@ const Login = ({ setUser }) => {
             placeholder="Username"
           />
           <LoginInput
-            type="text"
+            type="password"
             value={password || ""}
             onChange={onChangePassword}
             placeholder="Password"

@@ -15,7 +15,7 @@ import {
 } from "../styles/RestaurantsElements";
 import { BiFoodMenu, BiSearch } from "react-icons/bi";
 
-const Restaurants = ({ uuid }) => {
+const Restaurants = ({ user }) => {
   const [restList, setRestList] = useState([]);
   const [selected, setSelected] = useState("");
   const [showItems, setShowItems] = useState(false);
@@ -59,7 +59,7 @@ const Restaurants = ({ uuid }) => {
     <div>
       {showItems ? (
         <Restaurant
-          uuid={uuid}
+          user={user}
           selected={selected}
           setShowItems={setShowItems}
         />

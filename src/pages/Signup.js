@@ -68,13 +68,13 @@ const Signup = () => {
               placeholder="Username"
             />
             <LoginInput
-              type="text"
+              type="password"
               value={password || ""}
               onChange={onChangePassword}
               placeholder="Password"
             />
             <LoginInput
-              type="text"
+              type="password"
               value={passwordAgain || ""}
               onChange={onChangePasswordAgain}
               placeholder="Re-Type Password"
@@ -89,18 +89,6 @@ const Signup = () => {
           </SignupContainer>
         </CenteredLogin>
       </LoginBackground>
-
-      {/* <label>Username: </label>
-      <input type="text" value={username || ""} onChange={onChangeUsername} />
-      <br />
-      <label>Password: </label>
-      <input type="text" value={password || ""} onChange={onChangePassword} />
-      <br />
-      <label>Re-type Passowrd: </label>
-      <input type="text" value={passwordAgain || ""} /> */}
-      {/* <br />
-      <button onClick={submit}>Signup</button>
-      <br /> */}
     </div>
   );
 };
