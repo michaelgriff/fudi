@@ -12,7 +12,11 @@ import {
   UserInfo,
   UserName,
   FollowButton,
+  Rating,
+  RatingContainer,
+  StarContainer,
 } from "../styles/HomeElements";
+import { FaStar } from "react-icons/fa";
 
 const Home = ({ user }) => {
   const [reviews, setReviews] = useState([]);
@@ -84,7 +88,12 @@ const Home = ({ user }) => {
                         {review.restaurant_name}
                       </RestaurantName>
                     </div>
-                    <p>{review.rating}</p>
+                    <RatingContainer>
+                      <Rating>{review.rating}</Rating>
+                      <StarContainer>
+                        <FaStar />
+                      </StarContainer>
+                    </RatingContainer>
                   </ReviewHeader>
                   <ReviewDescription>{review.reasoning}</ReviewDescription>
                   <UserInfo>

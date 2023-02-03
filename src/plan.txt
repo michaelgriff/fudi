@@ -49,3 +49,4 @@ To do list:
 - editting existing reviews
 - loading while requests are made
 - tab to view all reviews for a given item
+- liking reviews

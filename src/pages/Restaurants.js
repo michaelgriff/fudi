@@ -2,6 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Restaurant from "../components/Restaurant";
 import { useLocation } from "react-router-dom";
+import {
+  RestaurantContainer,
+  SearchContainer,
+  SearchInput,
+  ResultContainer,
+  ResultName,
+  ResultAddress,
+  NameContainer,
+  MenuContainer,
+  SearchLogoContainer,
+} from "../styles/RestaurantsElements";
+import { BiFoodMenu, BiSearch } from "react-icons/bi";
 
 const Restaurants = ({ uuid }) => {
   const [restList, setRestList] = useState([]);
@@ -53,17 +65,32 @@ const Restaurants = ({ uuid }) => {
         />
       ) : (
         <div>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search..."
-          />
-          <ul>
+          <RestaurantContainer>
+            <SearchContainer>
+              <SearchLogoContainer>
+                <BiSearch />
+              </SearchLogoContainer>
+              <SearchInput
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search..."
+              />
+            </SearchContainer>
             {filteredItems.map((item) => (
-              <li onClick={() => handleItemClick(item.uuid)}>{item.name}</li>
+              <ResultContainer>
+                <NameContainer>
+                  <MenuContainer>
+                    <BiFoodMenu />
+                  </MenuContainer>
+                  <ResultName onClick={() => handleItemClick(item.uuid)}>
+                    {item.name}
+                  </ResultName>
+                </NameContainer>
+                <ResultAddress>{item.address}</ResultAddress>
+              </ResultContainer>
             ))}
-          </ul>
+          </RestaurantContainer>
         </div>
       )}
     </div>

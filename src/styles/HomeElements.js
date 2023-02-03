@@ -6,8 +6,8 @@ export const HomeContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-start;
   overflow-y: auto;
   scroll-behavior: smooth;
   padding-top: 80px;
@@ -41,11 +41,29 @@ export const RestaurantName = styled.p`
   cursor: pointer;
 `;
 
+export const RatingContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const Rating = styled.p`
+  color: #df2929;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0px 0px;
+  padding-right: 6px;
+`;
+
 export const ReviewDescription = styled.p`
   color: #777777;
   text-align: left;
   font-size: 16px;
   margin-top: 10px;
+`;
+
+export const StarContainer = styled.div`
+  color: #df2929;
+  padding-top: 11px;
 `;
 
 export const UserInfo = styled.div`
