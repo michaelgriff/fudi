@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import updateReview from "../helpers/updateReview";
 import { useNavigate } from "react-router-dom";
+import FollowButton from "../components/FollowButton";
 import {
   HomeContainer,
   ReviewContainer,
@@ -11,7 +12,6 @@ import {
   ReviewDescription,
   UserInfo,
   UserName,
-  FollowButton,
   Rating,
   RatingContainer,
   StarContainer,
@@ -100,7 +100,7 @@ const Home = ({ user }) => {
                     <UserName onClick={() => toProfile(review.user)}>
                       {review.user.username}
                     </UserName>
-                    <FollowButton>Follow</FollowButton>
+                    <FollowButton user={user} selected={review.user} />
                   </UserInfo>
                 </ReviewContainer>
               );

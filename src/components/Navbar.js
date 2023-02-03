@@ -33,9 +33,6 @@ const Navbar = ({ user, setUser }) => {
               <StyledLink to="/home">Home</StyledLink>
             </Option>
             <Option>
-              <StyledLink to="/login">Login</StyledLink>
-            </Option>
-            <Option>
               <StyledLink to="/restaurants">Restaurants</StyledLink>
             </Option>
             <Option>

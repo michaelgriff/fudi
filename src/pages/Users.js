@@ -2,6 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FollowButton from "../components/FollowButton";
 import { useNavigate } from "react-router-dom";
+import {
+  RestaurantContainer,
+  SearchContainer,
+  SearchInput,
+  ResultContainer,
+  ResultName,
+  NameContainer,
+  MenuContainer,
+  SearchLogoContainer,
+} from "../styles/RestaurantsElements";
+import { BiUser, BiSearch } from "react-icons/bi";
 
 const Users = ({ user }) => {
   const [users, setUsers] = useState([]);
@@ -40,7 +51,7 @@ const Users = ({ user }) => {
 
   return (
     <div>
-      <input
+      {/* <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -51,7 +62,33 @@ const Users = ({ user }) => {
           <p onClick={() => toProfile(item)}>{item.username}</p>
           <FollowButton user={user} selected={item} />
         </div>
-      ))}
+      ))} */}
+      <div>
+        <RestaurantContainer>
+          <SearchContainer>
+            <SearchLogoContainer>
+              <BiSearch />
+            </SearchLogoContainer>
+            <SearchInput
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search..."
+            />
+          </SearchContainer>
+          {filteredUsers.map((item) => (
+            <ResultContainer onClick={() => toProfile(item)}>
+              <NameContainer>
+                <MenuContainer>
+                  <BiUser />
+                </MenuContainer>
+                <ResultName>{item.username}</ResultName>
+              </NameContainer>
+              <FollowButton user={user} selected={item} />
+            </ResultContainer>
+          ))}
+        </RestaurantContainer>
+      </div>
     </div>
   );
 };

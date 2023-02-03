@@ -47,6 +47,12 @@ export const ResultContainer = styled.div`
   border: 1px solid lightgray;
   margin-top: 30px;
   padding: 10px;
+  cursor: pointer;
+
+  :hover {
+    background-color: #f1f1f1;
+    transition: ease-in-out 0.2s;
+  }
 `;
 
 export const Icon = styled.div`
@@ -77,5 +83,5 @@ export const ResultName = styled.h3`
 export const ResultAddress = styled.div`
   padding-top: 6px;
   font-size: 14px;
-  color: lightgray;
+  color: #929292;
 `;

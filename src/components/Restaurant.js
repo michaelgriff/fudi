@@ -1,7 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Review from "./Review";
 import Item from "./Item";
+import {
+  MenuItemContainer,
+  MenuItemName,
+  MenuItemDescription,
+  TopContainer,
+  TitleContainer,
+} from "../styles/RestaurantElements";
+import {
+  RestaurantContainer,
+  ResultName,
+  ResultAddress,
+  NameContainer,
+  MenuContainer,
+} from "../styles/RestaurantsElements";
+import { BiFoodMenu } from "react-icons/bi";
 
 const Restaurant = ({ uuid, selected, setShowItems }) => {
   const [items, setItems] = useState([]);
@@ -17,7 +31,7 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
       });
       const itemList = [];
       response.data.Items.forEach((item) => {
-        if (item.parentRestaurant === selected) {
+        if (item.parentRestaurant === selected.uuid) {
           itemList.push(item);
         }
       });
@@ -53,17 +67,37 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
           setShowReview={setShowReview}
         />
       ) : items ? (
-        items.map((item) => {
-          return (
-            <div>
-              <p onClick={() => handleItemClick(item)}>{item.name}</p>
-              <p>{item.description}</p>
-            </div>
-          );
-        })
+        <RestaurantContainer>
+          <TitleContainer>
+            <NameContainer>
+              <MenuContainer>
+                <BiFoodMenu />
+              </MenuContainer>
+              <ResultName>{selected.name}</ResultName>
+            </NameContainer>
+            <ResultAddress>{selected.address}</ResultAddress>
+          </TitleContainer>
+          {items.map((item) => {
+            return (
+              <MenuItemContainer onClick={() => handleItemClick(item)}>
+                <TopContainer>
+                  <MenuItemName>{item.name}</MenuItemName>
+                </TopContainer>
+                <MenuItemDescription>{item.description}</MenuItemDescription>
+              </MenuItemContainer>
+            );
+          })}
+        </RestaurantContainer>
       ) : null}
     </div>
   );
 };
 
 export default Restaurant;
+
+{
+  /* <p onClick={() => handleItemClick(item)}>{item.name}</p> */
+}
+{
+  /* <p>{item.description}</p> */
+}

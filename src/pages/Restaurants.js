@@ -50,8 +50,8 @@ const Restaurants = ({ uuid }) => {
       )
     : null;
 
-  const handleItemClick = (uuid) => {
-    setSelected(uuid);
+  const handleItemClick = (item) => {
+    setSelected(item);
     setShowItems(true);
   };
 
@@ -78,14 +78,12 @@ const Restaurants = ({ uuid }) => {
               />
             </SearchContainer>
             {filteredItems.map((item) => (
-              <ResultContainer>
+              <ResultContainer onClick={() => handleItemClick(item)}>
                 <NameContainer>
                   <MenuContainer>
                     <BiFoodMenu />
                   </MenuContainer>
-                  <ResultName onClick={() => handleItemClick(item.uuid)}>
-                    {item.name}
-                  </ResultName>
+                  <ResultName>{item.name}</ResultName>
                 </NameContainer>
                 <ResultAddress>{item.address}</ResultAddress>
               </ResultContainer>

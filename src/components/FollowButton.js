@@ -1,6 +1,32 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  background-color: #df2929;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 2px;
+`;
+
+const StyledButtonGrey = styled.button`
+  background-color: #484848;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 2px;
+`;
+
 const FollowButton = ({ user, selected }) => {
   const [isFollowingBool, setIsFollowingBool] = useState("");
 
@@ -22,7 +48,8 @@ const FollowButton = ({ user, selected }) => {
     });
   };
 
-  const follow = async () => {
+  const follow = async (event) => {
+    event.stopPropagation();
     const following = JSON.parse(user.following);
     following.push(selected.uuid);
     setIsFollowingBool(true);
@@ -30,7 +57,8 @@ const FollowButton = ({ user, selected }) => {
     await post(following);
   };
 
-  const unfollow = async () => {
+  const unfollow = async (event) => {
+    event.stopPropagation();
     const following = JSON.parse(user.following);
     const filtered = following.filter((item) => item != selected.uuid);
     setIsFollowingBool(false);
@@ -49,9 +77,9 @@ const FollowButton = ({ user, selected }) => {
   return (
     <div>
       {isFollowingBool ? (
-        <button onClick={async () => await unfollow()}>Following</button>
+        <StyledButtonGrey onClick={unfollow}>Following</StyledButtonGrey>
       ) : (
-        <button onClick={async () => await follow()}>Follow</button>
+        <StyledButton onClick={follow}>Follow</StyledButton>
       )}
     </div>
   );
