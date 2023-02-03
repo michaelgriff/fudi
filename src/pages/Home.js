@@ -2,6 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import updateReview from "../helpers/updateReview";
 import { useNavigate } from "react-router-dom";
+import {
+  HomeContainer,
+  ReviewContainer,
+  ReviewHeader,
+  ItemName,
+  RestaurantName,
+  ReviewDescription,
+  UserInfo,
+  UserName,
+  FollowButton,
+} from "../styles/HomeElements";
 
 const Home = ({ user }) => {
   const [reviews, setReviews] = useState([]);
@@ -40,8 +51,8 @@ const Home = ({ user }) => {
   };
 
   return (
-    <div>
-      {reviews
+    <div style={{ height: "100%" }}>
+      {/* {reviews
         ? reviews.map((review) => {
             return (
               <div>
@@ -57,7 +68,36 @@ const Home = ({ user }) => {
               </div>
             );
           })
-        : null}
+        : null} */}
+
+      <HomeContainer>
+        {reviews
+          ? reviews.map((review) => {
+              return (
+                <ReviewContainer>
+                  <ReviewHeader>
+                    <div>
+                      <ItemName>{review.item_name}</ItemName>
+                      <RestaurantName
+                        onClick={() => toRestaurant(review.restaurant_id)}
+                      >
+                        {review.restaurant_name}
+                      </RestaurantName>
+                    </div>
+                    <p>{review.rating}</p>
+                  </ReviewHeader>
+                  <ReviewDescription>{review.reasoning}</ReviewDescription>
+                  <UserInfo>
+                    <UserName onClick={() => toProfile(review.user)}>
+                      {review.user.username}
+                    </UserName>
+                    <FollowButton>Follow</FollowButton>
+                  </UserInfo>
+                </ReviewContainer>
+              );
+            })
+          : null}
+      </HomeContainer>
     </div>
   );
 };

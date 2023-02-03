@@ -8,7 +8,7 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
   const [showReview, setShowReview] = useState(false);
   const [showItem, setShowItem] = useState(false);
   const [item, setItem] = useState({});
-  const [reviewing, setReviewing] = useState({});
+
   useEffect(() => {
     const fetch = async () => {
       const response = await axios({
@@ -28,11 +28,6 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
       setItems(itemList);
     });
   }, []);
-
-  const handleReviewClick = (item) => {
-    setShowReview(true);
-    setReviewing(item);
-  };
 
   const handleItemClick = (item) => {
     setShowItem(true);
@@ -67,24 +62,6 @@ const Restaurant = ({ uuid, selected, setShowItems }) => {
           );
         })
       ) : null}
-
-      {/* {showReview ? (
-        <Review
-          uuid={uuid}
-          reviewing={reviewing}
-          setShowReview={setShowReview}
-        />
-      ) : items ? (
-        items.map((item) => {
-          return (
-            <div>
-              <p>{item.name}</p>
-              <p>{item.description}</p>
-              <button onClick={() => handleReviewClick(item)}>Review</button>
-            </div>
-          );
-        })
-      ) : null} */}
     </div>
   );
 };
