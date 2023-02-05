@@ -14,7 +14,7 @@ import {
 } from "../styles/LoginElements";
 import logo from "../images/fudi-logo.png";
 
-const Signup = () => {
+const Signup = ({ user }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
@@ -39,7 +39,7 @@ const Signup = () => {
         data: body,
       });
 
-      navigate("/");
+      navigate("/home");
     }
   };
 

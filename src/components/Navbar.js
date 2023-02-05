@@ -63,10 +63,13 @@ const Navbar = ({ user, setUser }) => {
           />
           <Route path="/home" element={<Home user={user} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup setUser={setUser} />} />
           <Route path="/restaurants" element={<Restaurants user={user} />} />
           <Route path="/users" element={<Users user={user} />} />
-          <Route path="/profile/:id" element={<Profile user={user} />} />
+          <Route
+            path="/profile/:id"
+            element={<Profile user={user} setUser={setUser} />}
+          />
         </Routes>
       </div>
     </Router>

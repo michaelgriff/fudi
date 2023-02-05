@@ -3,8 +3,34 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import updateReview from "../helpers/updateReview";
 import FollowButton from "../components/FollowButton";
+import {
+  Container,
+  IconContainer,
+  InfoContainer,
+  Info,
+  Title,
+  Number,
+  LeftContainer,
+  StyledButtonGrey,
+  Username,
+} from "../styles/ProfileElements";
+import {
+  ReviewContainer,
+  ReviewHeader,
+  ItemName,
+  RestaurantName,
+  ReviewDescription,
+  UserInfo,
+  UserName,
+  Rating,
+  RatingContainer,
+  StarContainer,
+} from "../styles/HomeElements";
+import { RestaurantContainer } from "../styles/RestaurantsElements";
+import { BiUserCircle } from "react-icons/bi";
+import { FaStar } from "react-icons/fa";
 
-const Profile = ({ user }) => {
+const Profile = ({ user, setUser }) => {
   const [reviews, setReviews] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
 
@@ -14,6 +40,7 @@ const Profile = ({ user }) => {
   useEffect(() => {
     if (location.state) {
       setCurrentUser(location.state.user);
+      console.log(currentUser);
     }
   }, [location.state]);
 
@@ -43,29 +70,69 @@ const Profile = ({ user }) => {
     navigate("/restaurants", { state: { restaurant_id } });
   };
 
+  const logout = () => {
+    setUser();
+    navigate("/login");
+  };
+
   return (
-    <div>
-      {currentUser.uuid ? (
-        user.uuid === currentUser.uuid ? (
-          <button>Settings</button>
-        ) : (
-          <FollowButton user={user} selected={currentUser} />
-        )
-      ) : null}
-      <p>{currentUser.username}</p>
+    <RestaurantContainer>
+      <Container>
+        <LeftContainer>
+          <IconContainer>
+            <BiUserCircle />
+          </IconContainer>
+          <Username>{currentUser.username}</Username>
+        </LeftContainer>
+        <InfoContainer>
+          <Info>
+            <Title>Reviews</Title>
+            <Number>{reviews ? reviews.length : null}</Number>
+          </Info>
+          <Info>
+            <Title>Following</Title>
+            <Number>
+              {currentUser.following
+                ? JSON.parse(currentUser.following).length
+                : null}
+            </Number>
+          </Info>
+          {currentUser.uuid ? (
+            user.uuid === currentUser.uuid ? (
+              <StyledButtonGrey onClick={logout}>Log out</StyledButtonGrey>
+            ) : (
+              <FollowButton user={user} selected={currentUser} />
+            )
+          ) : null}
+        </InfoContainer>
+      </Container>
       {reviews.map((review) => {
         return (
-          <div>
-            <p onClick={() => toRestaurant(review.restaurant_id)}>
-              {review.restaurant_name}
-            </p>
-            <p>{review.item_name}</p>
-            <p>{review.rating}</p>
-            <p>{review.reasoning}</p>
-          </div>
+          <ReviewContainer>
+            <ReviewHeader>
+              <div>
+                <ItemName>{review.item_name}</ItemName>
+                <RestaurantName
+                  onClick={() => toRestaurant(review.restaurant_id)}
+                >
+                  {review.restaurant_name}
+                </RestaurantName>
+              </div>
+              <RatingContainer>
+                <Rating>{review.rating}</Rating>
+                <StarContainer>
+                  <FaStar />
+                </StarContainer>
+              </RatingContainer>
+            </ReviewHeader>
+            <ReviewDescription>{review.reasoning}</ReviewDescription>
+            <UserInfo>
+              <UserName>{review.user.username}</UserName>
+            </UserInfo>
+          </ReviewContainer>
         );
       })}
-    </div>
+    </RestaurantContainer>
   );
 };
 
