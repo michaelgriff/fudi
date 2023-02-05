@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import {
+  ReviewContainer,
+  InputWrapper,
+  ScoreInput,
+  DescriptionInput,
+  InputLabel,
+  ScoreInputLabel,
+  SubmitButton,
+  ArrowWrapper,
+} from "../styles/ReviewElements";
+import { BsArrowRightShort } from "react-icons/bs";
 
 const Review = ({ uuid, reviewing, setShowReview }) => {
   const [value, setValue] = useState("");
@@ -31,17 +42,36 @@ const Review = ({ uuid, reviewing, setShowReview }) => {
       },
       data: body,
     });
+
+    setShowReview(false);
   };
   return (
-    <div>
-      <p>Score:</p>
-      <input type="text" value={value} onChange={handleChange} />
-      <p>Description:</p>
-      <div>
-        <textarea value={text} onChange={handleTextChange} />
-      </div>
-      <button onClick={() => submitReview({ value, text })}>Submit</button>
-    </div>
+    <ReviewContainer>
+      <InputWrapper>
+        <ScoreInputLabel>Score</ScoreInputLabel>
+        <ScoreInput type="text" value={value} onChange={handleChange} />
+      </InputWrapper>
+
+      <InputWrapper>
+        <InputLabel>Review</InputLabel>
+        <DescriptionInput value={text} onChange={handleTextChange} />
+      </InputWrapper>
+      <SubmitButton onClick={() => submitReview({ value, text })}>
+        Submit
+        <ArrowWrapper>
+          <BsArrowRightShort />
+        </ArrowWrapper>
+      </SubmitButton>
+    </ReviewContainer>
+    // <div>
+    //   <p>Score:</p>
+    //   <input type="text" value={value} onChange={handleChange} />
+    //   <p>Description:</p>
+    //   <div>
+    //     <textarea value={text} onChange={handleTextChange} />
+    //   </div>
+    //   <button onClick={() => submitReview({ value, text })}>Submit</button>
+    // </div>
   );
 };
 

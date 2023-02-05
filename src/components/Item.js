@@ -18,7 +18,6 @@ import {
   MenuContainer,
 } from "../styles/RestaurantsElements";
 import {
-  HomeContainer,
   ReviewContainer,
   ReviewHeader,
   ItemName,
