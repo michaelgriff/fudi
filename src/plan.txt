@@ -50,4 +50,7 @@ To do list:
 - loading while requests are made
 - tab to view all reviews for a given item
 - liking reviews
-- send to different page when submitted.
+- send to different page when submitted
+- chronologically order reviews on home page
+- username on main page
+- update item review page when review is submitted
