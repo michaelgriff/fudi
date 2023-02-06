@@ -1,11 +1,16 @@
 import "./App.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar";
 
 function App() {
-  const [user, setUser] = useState("");
+  const userString = localStorage.getItem("user");
+  const [user, setUser] = useState(userString ? JSON.parse(userString) : "");
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
   return (
     <div className="App">

@@ -32,8 +32,11 @@ import { BiUserCircle } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
 
 const Profile = ({ user, setUser }) => {
+  const currentUserString = localStorage.getItem("currentUser");
   const [reviews, setReviews] = useState([]);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(
+    currentUserString ? JSON.parse(currentUserString) : ""
+  );
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,11 +44,11 @@ const Profile = ({ user, setUser }) => {
   useEffect(() => {
     if (location.state) {
       setCurrentUser(location.state.user);
-      console.log(currentUser);
     }
   }, [location.state]);
 
   useEffect(() => {
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
     const fetch = async () => {
       const reviews = await axios({
         method: "get",

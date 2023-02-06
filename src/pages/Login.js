@@ -19,6 +19,10 @@ const Login = ({ setUser }) => {
   const [password, setPassword] = useState("");
   const [incorrect, setIncorrect] = useState(false);
 
+  useEffect(() => {
+    setUser("");
+  }, []);
+
   const submit = async () => {
     const response = await axios({
       method: "get",
