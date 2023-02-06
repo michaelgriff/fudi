@@ -15,6 +15,7 @@ import {
   Rating,
   RatingContainer,
   StarContainer,
+  MessageContainer,
 } from "../styles/HomeElements";
 import { FaStar } from "react-icons/fa";
 
@@ -57,37 +58,41 @@ const Home = ({ user }) => {
   return (
     <div style={{ height: "100%" }}>
       <HomeContainer>
-        {reviews
-          ? reviews.map((review) => {
-              return (
-                <ReviewContainer>
-                  <ReviewHeader>
-                    <div>
-                      <ItemName>{review.item_name}</ItemName>
-                      <RestaurantName
-                        onClick={() => toRestaurant(review.restaurant_id)}
-                      >
-                        {review.restaurant_name}
-                      </RestaurantName>
-                    </div>
-                    <RatingContainer>
-                      <Rating>{review.rating}</Rating>
-                      <StarContainer>
-                        <FaStar />
-                      </StarContainer>
-                    </RatingContainer>
-                  </ReviewHeader>
-                  <ReviewDescription>{review.reasoning}</ReviewDescription>
-                  <UserInfo>
-                    <UserName onClick={() => toProfile(review.user)}>
-                      {review.user.username}
-                    </UserName>
-                    <FollowButton user={user} selected={review.user} />
-                  </UserInfo>
-                </ReviewContainer>
-              );
-            })
-          : null}
+        {reviews.length ? (
+          reviews.map((review) => {
+            return (
+              <ReviewContainer>
+                <ReviewHeader>
+                  <div>
+                    <ItemName>{review.item_name}</ItemName>
+                    <RestaurantName
+                      onClick={() => toRestaurant(review.restaurant_id)}
+                    >
+                      {review.restaurant_name}
+                    </RestaurantName>
+                  </div>
+                  <RatingContainer>
+                    <Rating>{review.rating}</Rating>
+                    <StarContainer>
+                      <FaStar />
+                    </StarContainer>
+                  </RatingContainer>
+                </ReviewHeader>
+                <ReviewDescription>{review.reasoning}</ReviewDescription>
+                <UserInfo>
+                  <UserName onClick={() => toProfile(review.user)}>
+                    {review.user.username}
+                  </UserName>
+                  <FollowButton user={user} selected={review.user} />
+                </UserInfo>
+              </ReviewContainer>
+            );
+          })
+        ) : (
+          <MessageContainer>
+            No reviews yet. Follow other users to see what they're eating.
+          </MessageContainer>
+        )}
       </HomeContainer>
     </div>
   );

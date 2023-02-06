@@ -50,3 +50,4 @@ To do list:
 - loading while requests are made
 - tab to view all reviews for a given item
 - liking reviews
+- send to different page when submitted.

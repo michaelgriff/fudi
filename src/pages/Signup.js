@@ -14,7 +14,7 @@ import {
 } from "../styles/LoginElements";
 import logo from "../images/fudi-logo.png";
 
-const Signup = ({ user }) => {
+const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");

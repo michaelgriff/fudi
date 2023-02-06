@@ -89,3 +89,10 @@ export const FollowButton = styled.button`
   border-radius: 20px;
   font-size: 14px;
 `;
+
+export const MessageContainer = styled.div`
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+`;

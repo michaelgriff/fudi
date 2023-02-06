@@ -139,7 +139,11 @@ const Item = ({ user, item, setShowItem, showReview, setShowReview }) => {
         )}
 
         {showReview ? (
-          <Review uuid={user.uuid} reviewing={item} />
+          <Review
+            uuid={user.uuid}
+            reviewing={item}
+            setShowReview={setShowReview}
+          />
         ) : (
           reviews.map((review) => {
             return (

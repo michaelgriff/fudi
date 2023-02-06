@@ -63,15 +63,6 @@ const Review = ({ uuid, reviewing, setShowReview }) => {
         </ArrowWrapper>
       </SubmitButton>
     </ReviewContainer>
-    // <div>
-    //   <p>Score:</p>
-    //   <input type="text" value={value} onChange={handleChange} />
-    //   <p>Description:</p>
-    //   <div>
-    //     <textarea value={text} onChange={handleTextChange} />
-    //   </div>
-    //   <button onClick={() => submitReview({ value, text })}>Submit</button>
-    // </div>
   );
 };
 

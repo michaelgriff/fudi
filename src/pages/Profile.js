@@ -25,6 +25,7 @@ import {
   Rating,
   RatingContainer,
   StarContainer,
+  MessageContainer,
 } from "../styles/HomeElements";
 import { RestaurantContainer } from "../styles/RestaurantsElements";
 import { BiUserCircle } from "react-icons/bi";
@@ -106,32 +107,42 @@ const Profile = ({ user, setUser }) => {
           ) : null}
         </InfoContainer>
       </Container>
-      {reviews.map((review) => {
-        return (
-          <ReviewContainer>
-            <ReviewHeader>
-              <div>
-                <ItemName>{review.item_name}</ItemName>
-                <RestaurantName
-                  onClick={() => toRestaurant(review.restaurant_id)}
-                >
-                  {review.restaurant_name}
-                </RestaurantName>
-              </div>
-              <RatingContainer>
-                <Rating>{review.rating}</Rating>
-                <StarContainer>
-                  <FaStar />
-                </StarContainer>
-              </RatingContainer>
-            </ReviewHeader>
-            <ReviewDescription>{review.reasoning}</ReviewDescription>
-            <UserInfo>
-              <UserName>{review.user.username}</UserName>
-            </UserInfo>
-          </ReviewContainer>
-        );
-      })}
+      {reviews.length ? (
+        reviews.map((review) => {
+          return (
+            <ReviewContainer>
+              <ReviewHeader>
+                <div>
+                  <ItemName>{review.item_name}</ItemName>
+                  <RestaurantName
+                    onClick={() => toRestaurant(review.restaurant_id)}
+                  >
+                    {review.restaurant_name}
+                  </RestaurantName>
+                </div>
+                <RatingContainer>
+                  <Rating>{review.rating}</Rating>
+                  <StarContainer>
+                    <FaStar />
+                  </StarContainer>
+                </RatingContainer>
+              </ReviewHeader>
+              <ReviewDescription>{review.reasoning}</ReviewDescription>
+              <UserInfo>
+                <UserName>{review.user.username}</UserName>
+              </UserInfo>
+            </ReviewContainer>
+          );
+        })
+      ) : currentUser.uuid ? (
+        user.uuid === currentUser.uuid ? (
+          <MessageContainer>
+            No reviews yet. Visit the Restaurants page to review some food.
+          </MessageContainer>
+        ) : (
+          <MessageContainer>No reviews yet.</MessageContainer>
+        )
+      ) : null}
     </RestaurantContainer>
   );
 };

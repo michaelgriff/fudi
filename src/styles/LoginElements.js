@@ -62,3 +62,9 @@ export const SignupText = styled.span`
   font-weight: bold;
   cursor: pointer;
 `;
+
+export const IncorrectWrapper = styled.div`
+  color: #dc1a1a;
+  font-size: 14px;
+  margin-top: 15px;
+`;
