@@ -59,7 +59,14 @@ const PencilWrapper = styled.div`
   padding-top: 2px;
 `;
 
-const Item = ({ user, item, setShowItem, showReview, setShowReview }) => {
+const Item = ({
+  user,
+  item,
+  setShowItem,
+  showReview,
+  setShowReview,
+  setLoading,
+}) => {
   const [reviews, setReviews] = useState([]);
   const [noReviews, setNoReviews] = useState(false);
 
@@ -67,6 +74,7 @@ const Item = ({ user, item, setShowItem, showReview, setShowReview }) => {
 
   useEffect(() => {
     const fetch = async () => {
+      setLoading(true);
       const response = await axios({
         method: "get",
         url: "https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/reviews",
@@ -88,6 +96,7 @@ const Item = ({ user, item, setShowItem, showReview, setShowReview }) => {
         setNoReviews(true);
       }
       setReviews(asyncReviewList);
+      setLoading(false);
     });
   }, []);
 

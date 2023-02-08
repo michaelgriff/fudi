@@ -20,7 +20,7 @@ import Restaurants from "../pages/Restaurants";
 import Profile from "../pages/Profile";
 import Users from "../pages/Users";
 
-const Navbar = ({ user, setUser }) => {
+const Navbar = ({ user, setUser, setLoading }) => {
   return (
     <Router>
       <div>
@@ -61,14 +61,25 @@ const Navbar = ({ user, setUser }) => {
               )
             }
           />
-          <Route path="/home" element={<Home user={user} />} />
+          <Route
+            path="/home"
+            element={<Home user={user} setLoading={setLoading} />}
+          />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup setUser={setUser} />} />
-          <Route path="/restaurants" element={<Restaurants user={user} />} />
-          <Route path="/users" element={<Users user={user} />} />
+          <Route
+            path="/restaurants"
+            element={<Restaurants user={user} setLoading={setLoading} />}
+          />
+          <Route
+            path="/users"
+            element={<Users user={user} setLoading={setLoading} />}
+          />
           <Route
             path="/profile/:id"
-            element={<Profile user={user} setUser={setUser} />}
+            element={
+              <Profile user={user} setUser={setUser} setLoading={setLoading} />
+            }
           />
         </Routes>
       </div>

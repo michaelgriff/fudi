@@ -15,7 +15,7 @@ import {
 } from "../styles/RestaurantsElements";
 import { BiFoodMenu, BiSearch } from "react-icons/bi";
 
-const Restaurants = ({ user }) => {
+const Restaurants = ({ user, setLoading }) => {
   const [restList, setRestList] = useState([]);
   const [selected, setSelected] = useState("");
   const [showItems, setShowItems] = useState(false);
@@ -32,6 +32,7 @@ const Restaurants = ({ user }) => {
 
   useEffect(() => {
     const fetch = async () => {
+      setLoading(true);
       const response = await axios({
         method: "get",
         url: "https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/restaurants",
@@ -41,6 +42,7 @@ const Restaurants = ({ user }) => {
 
     fetch().then((response) => {
       setRestList(response.data.Items);
+      setLoading(false);
     });
   }, []);
 
@@ -62,6 +64,7 @@ const Restaurants = ({ user }) => {
           user={user}
           selected={selected}
           setShowItems={setShowItems}
+          setLoading={setLoading}
         />
       ) : (
         <div>

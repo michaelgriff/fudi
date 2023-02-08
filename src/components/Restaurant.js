@@ -20,7 +20,7 @@ import {
 import { BiFoodMenu } from "react-icons/bi";
 import { BsFillArrowLeftSquareFill } from "react-icons/bs";
 
-const Restaurant = ({ user, selected, setShowItems }) => {
+const Restaurant = ({ user, selected, setShowItems, setLoading }) => {
   const [items, setItems] = useState([]);
   const [showReview, setShowReview] = useState(false);
   const [showItem, setShowItem] = useState(false);
@@ -28,6 +28,7 @@ const Restaurant = ({ user, selected, setShowItems }) => {
 
   useEffect(() => {
     const fetch = async () => {
+      setLoading(true);
       const response = await axios({
         method: "get",
         url: "https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/items",
@@ -43,6 +44,7 @@ const Restaurant = ({ user, selected, setShowItems }) => {
     };
     fetch().then((itemList) => {
       setItems(itemList);
+      setLoading(false);
     });
   }, []);
 
@@ -60,6 +62,7 @@ const Restaurant = ({ user, selected, setShowItems }) => {
           setShowItem={setShowItem}
           showReview={showReview}
           setShowReview={setShowReview}
+          setLoading={setLoading}
         />
       ) : items ? (
         <RestaurantContainer>

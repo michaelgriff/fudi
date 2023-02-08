@@ -14,7 +14,7 @@ import {
 } from "../styles/RestaurantsElements";
 import { BiUser, BiSearch } from "react-icons/bi";
 
-const Users = ({ user }) => {
+const Users = ({ user, setLoading }) => {
   const [users, setUsers] = useState([]);
   const [query, setQuery] = useState("");
 
@@ -22,6 +22,7 @@ const Users = ({ user }) => {
 
   useEffect(() => {
     const fetch = async () => {
+      setLoading(true);
       const response = await axios({
         method: "get",
         url: "https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/users",
@@ -34,6 +35,7 @@ const Users = ({ user }) => {
     };
     fetch().then((userList) => {
       setUsers(userList);
+      setLoading(false);
     });
   }, []);
 
@@ -51,44 +53,30 @@ const Users = ({ user }) => {
 
   return (
     <div>
-      {/* <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search..."
-      />
-      {filteredUsers.map((item) => (
-        <div>
-          <p onClick={() => toProfile(item)}>{item.username}</p>
-          <FollowButton user={user} selected={item} />
-        </div>
-      ))} */}
-      <div>
-        <RestaurantContainer>
-          <SearchContainer>
-            <SearchLogoContainer>
-              <BiSearch />
-            </SearchLogoContainer>
-            <SearchInput
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search..."
-            />
-          </SearchContainer>
-          {filteredUsers.map((item) => (
-            <ResultContainer onClick={() => toProfile(item)}>
-              <NameContainer>
-                <MenuContainer>
-                  <BiUser />
-                </MenuContainer>
-                <ResultName>{item.username}</ResultName>
-              </NameContainer>
-              <FollowButton user={user} selected={item} />
-            </ResultContainer>
-          ))}
-        </RestaurantContainer>
-      </div>
+      <RestaurantContainer>
+        <SearchContainer>
+          <SearchLogoContainer>
+            <BiSearch />
+          </SearchLogoContainer>
+          <SearchInput
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search..."
+          />
+        </SearchContainer>
+        {filteredUsers.map((item) => (
+          <ResultContainer onClick={() => toProfile(item)}>
+            <NameContainer>
+              <MenuContainer>
+                <BiUser />
+              </MenuContainer>
+              <ResultName>{item.username}</ResultName>
+            </NameContainer>
+            <FollowButton user={user} selected={item} />
+          </ResultContainer>
+        ))}
+      </RestaurantContainer>
     </div>
   );
 };

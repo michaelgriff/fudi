@@ -54,3 +54,4 @@ To do list:
 - chronologically order reviews on home page
 - username on main page
 - update item review page when review is submitted
+- cap the review score to a certain number, investigate decimal arrangement

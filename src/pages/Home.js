@@ -19,13 +19,14 @@ import {
 } from "../styles/HomeElements";
 import { FaStar } from "react-icons/fa";
 
-const Home = ({ user }) => {
+const Home = ({ user, setLoading }) => {
   const [reviews, setReviews] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetch = async () => {
+      setLoading(true);
       const allReviews = await axios({
         method: "get",
         url: "https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/reviews",
@@ -42,6 +43,7 @@ const Home = ({ user }) => {
     };
     fetch().then((reviewList) => {
       setReviews(reviewList);
+      setLoading(false);
     });
   }, []);
 

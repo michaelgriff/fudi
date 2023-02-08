@@ -31,7 +31,7 @@ import { RestaurantContainer } from "../styles/RestaurantsElements";
 import { BiUserCircle } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
 
-const Profile = ({ user, setUser }) => {
+const Profile = ({ user, setUser, setLoading }) => {
   const currentUserString = localStorage.getItem("currentUser");
   const [reviews, setReviews] = useState([]);
   const [currentUser, setCurrentUser] = useState(
@@ -50,6 +50,7 @@ const Profile = ({ user, setUser }) => {
   useEffect(() => {
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     const fetch = async () => {
+      setLoading(true);
       const reviews = await axios({
         method: "get",
         url: "https://u7px96sqy4.execute-api.us-east-2.amazonaws.com/reviews",
@@ -67,6 +68,7 @@ const Profile = ({ user, setUser }) => {
 
     fetch().then((asyncReviewList) => {
       setReviews(asyncReviewList);
+      setLoading(false);
     });
   }, [currentUser]);
 
