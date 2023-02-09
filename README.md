@@ -4,11 +4,11 @@ Fudi is a food-related social media platform where users can share their reviews
 
 ## Features
 
-> Share reviews of restaurant items with friends and followers
-> Discover new dishes and restaurants based on recommendations from the community
-> Interact with other users by commenting on and liking their reviews
-> Build a network of friends and foodies with similar tastes
-> Keep track of your favorite dishes and restaurants in your personal profile
+- Share reviews of restaurant items with friends and followers
+- Discover new dishes and restaurants based on recommendations from the community
+- Interact with other users by commenting on and liking their reviews
+- Build a network of friends and foodies with similar tastes
+- Keep track of your favorite dishes and restaurants in your personal profile
 
 ## Installation
 
